@@ -6,7 +6,7 @@ let userList = [];
 let mailList = [];
 let cmdLine_;
 let output_;
-let serverDate = { day: "05", month: "01", year: "1996", reference: "" };
+let serverDate = { day: "", month: "", year: "", reference: "" };
 
 function initDateObject() {
     const date = new Date();
