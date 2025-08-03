@@ -2,7 +2,7 @@
     "serverAddress": "localhost",
     "serverName": "Node Y56 Intranet",
     "iconName": "Delta.png",
-    "terminalID": "Y56",
+    "terminalID": "Δ",
     "defaultUser": {
         "userId": "user",
         "password": "",
