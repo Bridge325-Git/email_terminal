@@ -289,32 +289,10 @@ system = {
         } );
     },
 
-    whoami() {
-        return new Promise( ( resolve ) => {
-            resolve(
-                `${ serverDatabase.serverAddress }/${ userDatabase.userId }`
-            );
-        } );
-    },
-
     clear() {
         return new Promise( ( resolve ) => {
             setHeader();
             resolve( false );
-        } );
-    },
-
-    date() {
-        return new Promise( ( resolve ) => {
-            const date = new Date();
-            const time = `${ date.getHours() }:${ date.getMinutes() }:${ date.getSeconds() }`;
-            resolve( String( `${ serverDate.month } ${ serverDate.day } ${ serverDate.year } ${ time } ${ serverDate.reference }` ) );
-        } );
-    },
-
-    echo( args ) {
-        return new Promise( ( resolve ) => {
-            resolve( args.join( " " ) );
         } );
     },
 
@@ -446,54 +424,6 @@ system = {
             message = [ ...message, ...mailAtIndex.body.split( "  " ) ];
             resolve( message );
         } );
-    },
-
-    ping( args ) {
-        return new Promise( ( resolve, reject ) => {
-            if ( args === "" ) {
-                reject( new AddressIsEmptyError() );
-                return;
-            }
-
-            $.get( `config/network/${ args }/manifest.json`, ( serverInfo ) => {
-                resolve( `Server ${ serverInfo.serverAddress } (${ serverInfo.serverName }) can be reached` );
-            } )
-                .fail( () => reject( new AddressNotFoundError( args ) ) );
-        } );
-    },
-
-    telnet() {
-        return new Promise( ( _, reject ) => {
-            reject( new Error( "telnet is unsecure and is deprecated - use ssh instead" ) );
-        } );
-    },
-
-    ssh( args ) {
-        return new Promise( ( resolve, reject ) => {
-            if ( args === "" ) {
-                reject( new AddressIsEmptyError() );
-                return;
-            }
-            let userName = "";
-            let passwd = "";
-            let serverAddress = args[ 0 ];
-            if ( serverAddress.includes( "@" ) ) {
-                const splitted = serverAddress.split( "@" );
-                if ( splitted.length !== 2 ) {
-                    reject( new InvalidCommandParameter( "ssh" ) );
-                    return;
-                }
-                serverAddress = splitted[ 1 ];
-                try {
-                    [ userName, passwd ] = userPasswordFrom( splitted[ 0 ] );
-                } catch ( error ) {
-                    reject( error );
-                    return;
-                }
-            }
-            kernel.connectToServer( serverAddress, userName, passwd ).then( resolve ).catch( reject );
-        } );
-    }
 };
 
 function userPasswordFrom( creds ) {
