@@ -1,5 +1,4 @@
 {
-
     "cdata.exe": {
         "protection": ["admin", "faux"],
         "delayed": 2000,
