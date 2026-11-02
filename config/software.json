@@ -12,7 +12,7 @@
         ]
     },
     "cdata.exe": {
-        "protection": ["admin"],
+        "protection": ["admin", "faux"],
         "delayed": 2000,
         "message": [
             "Corrupting data.",
