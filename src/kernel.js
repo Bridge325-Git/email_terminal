@@ -314,7 +314,7 @@ system = {
                 resolve( [
                     "You can read the help of a specific command by entering as follows: 'help commandName'",
                     "List of useful commands:",
-                    `<div class="ls-files">${ cmdNames.join( "<br>" ) }</div>`,
+                    "clear help login logout mail read",
                     "You can navigate in the commands usage history using the UP & DOWN arrow keys.",
                     "The TAB key will provide command auto-completion."
                 ] );
